@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIP RSVP Booking Suite | The Celestial Gala</title>
+    <meta name="description" content="Reserve your invitation to The Celestial Gala 2025. Confirm attendance, guest preferences, and generate your instant personalized VIP Pass.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-dark text-white min-h-screen flex flex-col justify-between">
+
+    <!-- Canvas Starfield -->
+    <canvas id="starfield"></canvas>
+
+    <!-- Navigation Header -->
+    <header class="gala-header">
+        <div class="nav-container">
+            <a href="index.html" class="brand-logo">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path>
+                </svg>
+                <span>CELESTIAL GALA</span>
+            </a>
+
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="schedule.html" class="nav-link">Schedule</a></li>
+                    <li><a href="venue.html" class="nav-link">Venue</a></li>
+                    <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+                    <li><a href="rsvp.html" class="nav-link active">RSVP</a></li>
+                </ul>
+            </nav>
+
+            <div class="flex items-center gap-4">
+                <button id="audio-toggle" class="audio-control-btn" title="Toggle Ambient Celestial Sound">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path>
+                    </svg>
+                </button>
+                <a href="rsvp.html" class="nav-cta-btn hidden sm:inline-block">VIP RSVP</a>
+                <button class="mobile-menu-toggle">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="pt-32 pb-16 px-4">
+        <div class="max-w-3xl mx-auto">
+            <!-- Header Title -->
+            <div class="text-center mb-12 fade-in-up">
+                <span class="gold-text uppercase font-semibold text-xs tracking-widest">Exclusive Access</span>
+                <h1 class="font-serif text-4xl md:text-5xl gold-gradient-text uppercase mt-2">Reserve Your Experience</h1>
+                <p class="text-gray-400 text-sm mt-3">
+                    Please confirm your attendance by November 10th. Upon submission, your digital VIP Access Pass will be generated instantly.
+                </p>
+            </div>
+
+            <!-- RSVP Glass Form -->
+            <div class="glass-card p-8 md:p-12 fade-in-up">
+                <form id="gala-rsvp-form" class="space-y-6">
+
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="guest-name" class="form-label">Full Name *</label>
+                            <input type="text" id="guest-name" required placeholder="Lord / Lady / Dr. Full Name" class="custom-input">
+                        </div>
+
+                        <div>
+                            <label for="guest-email" class="form-label">Email Address *</label>
+                            <input type="email" id="guest-email" required placeholder="vip@domain.com" class="custom-input">
+                        </div>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="guest-count" class="form-label">Additional Guests (+1)</label>
+                            <select id="guest-count" class="custom-select">
+                                <option value="0">Solo Attendance (1 Pass)</option>
+                                <option value="1">Attending with Guest (+1 Pass)</option>
+                                <option value="2">Executive Party (+2 Passes)</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="guest-dietary" class="form-label">Dietary Preference</label>
+                            <select id="guest-dietary" class="custom-select">
+                                <option value="standard">Michelin Chef's Choice (Full Menu)</option>
+                                <option value="vegetarian">Gourmet Vegetarian</option>
+                                <option value="vegan">Plant-Based Celestial Tasting</option>
+                                <option value="gluten-free">Gluten-Free Fine Dining</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="guest-song" class="form-label">Symphony Request (Optional)</label>
+                        <input type="text" id="guest-song" placeholder="Your favorite classical piece or ambient song" class="custom-input">
+                    </div>
+
+                    <div class="pt-4 text-center">
+                        <button type="submit" class="btn-gold-primary w-full md:w-auto">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            Confirm Reservation & Get VIP Pass
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="gala-footer">
+        <div class="footer-logo">THE CELESTIAL GALA</div>
+        <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="schedule.html">Schedule</a></li>
+            <li><a href="venue.html">Venue</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="rsvp.html">RSVP</a></li>
+        </ul>
+        <p class="footer-copyright">&copy; 2025 The Celestial Gala. All Rights Reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
